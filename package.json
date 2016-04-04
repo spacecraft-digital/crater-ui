@@ -1,0 +1,52 @@
+{
+  "name": "crater-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Crater in t'ya face",
+  "main": "app.coffee",
+  "repository": "https://gitlab.hq.jadu.net/spacecraft/crater-ui",
+  "scripts": {
+    "watch:js": "watchify -t coffeeify  --ignore unicode/category/So frontend/index.coffee -o public/js/index.js -d -v",
+    "build:js": "browserify -t coffeeify  --ignore unicode/category/So frontend/index.coffee | uglifyjs - --compress warnings=false > public/js/index.js",
+    "watch:css": "watch 'node-sass --output-style compressed sass/main.scss public/css/main.css && postcss --use autoprefixer -o public/css/main.css public/css/main.css' sass/",
+    "build:css": "node-sass --output-style compressed sass/main.scss public/css/main.css",
+    "watch": "parallelshell 'npm run watch:js -s' 'npm run watch:css -s' 'npm run livereload'",
+    "build": "parallelshell 'npm run build:js -s' 'npm run build:css -s'",
+    "livereload": "live-reload --port 9091 public/",
+    "start": "clear && coffee app.coffee"
+  },
+  "author": "matt.dolan@jadu.co.uk",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "crater": "git+ssh://git@gitlab.hq.jadu.net:spacecraft/crater.git",
+    "deep-filter": "^1.0.1",
+    "ent": "^2.2.0",
+    "express": "^4.13.4",
+    "express-restify-mongoose": "^3.2.0",
+    "joinn": "^1.0.3",
+    "lodash": "^4.6.1",
+    "mc": "^1.0.6",
+    "method-override": "^2.3.5",
+    "npm-zepto": "^1.1.7",
+    "slug": "^0.9.1",
+    "twig": "^0.8.9",
+    "ucfirst": "^1.0.0",
+    "uncamelize": "^1.0.5"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
+    "coffee-script": "^1.9.3",
+    "coffeeify": "^2.0.1",
+    "colors": "^1.1.2",
+    "dev-tunnels": "git+ssh://git@gitlab.hq.jadu.net:spacecraft/dev-tunnels.git",
+    "live-reload": "^1.1.0",
+    "mocha": "^2.3.2",
+    "node-sass": "^3.4.2",
+    "parallelshell": "^2.0.0",
+    "tunnel-ssh": "^2",
+    "watch": "^0.17.1",
+    "watchify": "^3.7.0"
+  }
+}
