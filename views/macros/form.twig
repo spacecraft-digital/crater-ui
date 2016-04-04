@@ -1,0 +1,9 @@
+{% macro string(options, entity) %}
+    {% set options = {}|merge(options|objectFromString('name')) %}
+    <div class="form__group {{ options.class|default|e }}">
+        <label for="{{ options.name|e }}" class="control__label">{{ options.label|default(options.name|uncamelize|upperFirst)|e }}</label>
+        <div class="controls">
+            <input id="{{ options.name|e }}" name="{{ options.name|e }}" type="text" class="form__control" value="{{ options.value|default(entity[options.name])|e }}">
+        </div>
+    </div>
+{% endmacro %}

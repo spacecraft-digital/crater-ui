@@ -1,0 +1,35 @@
+<section class="stage">
+    <h2>{{ stage.name|e }}</h2>
+
+    <ul class="stage__urls">
+        {% for url in stage.urls %}
+            <li class="stage__urls__url"><a href="{{ url|e }}">{{ url|cleanUrl|e }}</a></li>
+        {% else %}
+            <li>-</li>
+        {% endfor %}
+    </ul>
+
+    <section class="stage__servers list--key-value">
+        <h3>Servers</h3>
+        <ul class="stage__servers__list">
+            {% for server in stage.servers %}
+                <li class="stage__server">
+                    <h4 class="stage__server__role">{{ server.role|e }}</h4>
+                    <div class="stage__server__host">{{ server.host|e }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="stage__modules list--key-value">
+        <h3>Installed Modules</h3>
+        <ul class="stage__modules__list">
+            {% for module in stage.modules %}
+                <li class="stage__module">
+                    <h4 class="stage__module__name">{{ module.name|e }}</h4>
+                    <div class="stage__module__version">{{ module.version|e }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</section>

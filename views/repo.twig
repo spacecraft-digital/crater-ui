@@ -1,0 +1,20 @@
+<section class="repo">
+    {% if repo.avatarUrl %}
+        <img src="{{ repo.avatarUrl|e }}" alt="{{ repo.name }}" class="repo__avatar">
+    {% endif %}
+    <h2>{{ repo.getName(true)|e }}</h2>
+
+    <ul>
+        {% if repo.createdDate %}<li>Created {{ repo.createdDate }}</li>{% endif %}
+        {% if repo.lastActivityDate %}<li>Last activity on {{ repo.lastActivityDate }}</li>{% endif %}
+        <li><a href="{{ repo.webUrl }}">{{ repo.webUrl }}</a></li>
+        <li>
+            Clone via <a href="{{ repo.sshUrl }}">SSH</a> / <a href="{{ repo.httpUrl }}">HTTPS</a>
+        </li>
+    </ul>
+
+    {% if repo.description %}
+        <p>{{ repo.description|e }}</p>
+    {% endif %}
+
+</section>
