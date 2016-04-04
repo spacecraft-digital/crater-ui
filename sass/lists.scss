@@ -1,0 +1,44 @@
+.list--horizontal {
+    h2 {
+        font-size: 16px;
+        line-height: 1.15;
+        margin: 0;
+        display: inline-block;
+        font-weight: bold;
+        letter-spacing: 0;
+        &:after {
+            content: ': ';
+        }
+    }
+    &>ul {
+        display: inline-block;
+        list-style: none;
+    }
+    &>ul>li {
+        display: inline-block;
+        &::after {
+            content: ', ';
+        }
+        &:last-child {
+            &::after {
+                content: '';
+            }
+        }
+    }
+}
+
+.list--key-value {
+    &>ul {
+        list-style: none;
+        &>li {
+            &>h4 {
+                display: inline-block;
+                font-size: 1em;
+                & + div {
+                    font-weight: bold;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
