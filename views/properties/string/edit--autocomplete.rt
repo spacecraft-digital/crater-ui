@@ -1,0 +1,20 @@
+<rt-require dependency="react-autosuggest" as="AutoSuggest"/>
+<rt-require dependency="escape-string-regexp" as="regexEscape"/>
+<AutoSuggest
+    ref="{(autosuggest) => {this.autosuggest = autosuggest ? this.setInput(autosuggest.input) : null}}"
+    name="{this.props.path}"
+    inputProps="{{
+        id: this.props.path,
+        onChange: this.changeHandler,
+        onBlur: this.blurHandler,
+        onKeyDown: this.inputKeyDownHandler,
+        value: this.props.value||''
+    }}"
+    suggestions="{this.state.suggestions}"
+    getSuggestionValue="{this.getSuggestionValue}"
+    onSuggestionsUpdateRequested="{this.onSuggestionsUpdateRequested}"
+    renderSuggestion="{this.renderSuggestion}"
+    shouldRenderSuggestions="{() => true}"
+    theme="{this.getTheme()}"
+>
+</AutoSuggest>

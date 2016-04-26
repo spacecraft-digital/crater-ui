@@ -1,0 +1,16 @@
+<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-undo" viewBox="0 0 16 16">
+            <title>undo</title>
+            <path class="path1" d="M11.904 16c1.777-3.219 2.076-8.13-4.904-7.966v3.966l-6-6 6-6v3.881c8.359-0.218 9.29 7.378 4.904 12.119z"></path>
+        </symbol>
+        <symbol id="icon-redo" viewBox="0 0 16 16">
+            <title>redo</title>
+            <path class="path1" d="M9 3.881v-3.881l6 6-6 6v-3.966c-6.98-0.164-6.681 4.747-4.904 7.966-4.386-4.741-3.455-12.337 4.904-12.119z"></path>
+        </symbol>
+        <symbol id="icon-bin" viewBox="0 0 16 16">
+            <title>bin</title>
+            <path class="path1" d="M3 16h10l1-11h-12zM10 2v-2h-4v2h-5v3l1-1h12l1 1v-3h-5zM9 2h-2v-1h2v1z"></path>
+        </symbol>
+    </defs>
+</svg>

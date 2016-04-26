@@ -1,0 +1,28 @@
+<rt-require dependency="../react/Entity.coffee" as="Entity"/>
+<rt-require dependency="../react/Mode.coffee" as="Mode"/>
+<rt-require dependency="../react/Message.coffee" as="Message"/>
+<rt-require dependency="../react/Button.coffee" as="Button"/>
+<rt-require dependency="react-tooltip" as="ReactTooltip"/>
+<main>
+    <Message id="message" message="{this.state.message}"></Message>
+    <div id="header">
+        <div id="header__data">
+            <span id="customer_name">
+                <select id="customer_select" onChange="{this.props.customerSelectHandler}" value="{this.state.data._id}">
+                    <option key="customer-select-{customer.id}" rt-repeat="customer in this.props.customers" value="{customer.id}">{customer.name}</option>
+                </select>
+                <h1 rt-if="this.state.data.name" class="customer_name">{this.state.data.name}</h1>
+            </span>
+            <Button rt-if="this.state.mode == 'edit'" icon="undo" id="undo" label="undo" enabled="{this.state.undoable}" clickHandler="{this.props.undoClickHandler}" />
+            <Button rt-if="this.state.mode == 'edit'" icon="redo" id="redo" label="redo" enabled="{this.state.redoable}" clickHandler="{this.props.redoClickHandler}" />
+            <label class="mode-toggle">
+                <span class="visually-hidden">Edit</span>
+                <input type="checkbox" class="switch" checked="{this.state.mode == 'edit'}" onChange="{this.props.modeChangeHandler}" />
+                <div /><!-- for the animated toggle -->
+            </label>
+        </div>
+    </div>
+    <Entity id="customer" data="{this.state.data}" mode="{this.state.mode}" schema="{this.props.schema}" changeHandler="{this.props.changeHandler}" pathEditHandler="{this.props.pathEditHandler}" setData="{this.props.setData}"></Entity>
+
+    <ReactTooltip ref="tooltip" place="left" type="dark" effect="solid" id="tooltip" offset="{{bottom: 0}}" />
+</main>

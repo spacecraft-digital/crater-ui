@@ -1,0 +1,38 @@
+// the :not([type="file"]) is to override .form__control:not([type="file"])
+textarea.form__control:not([type="file"]) {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    min-height: 70px;
+}
+button:disabled {
+    color: #ccc;
+
+}
+
+.button--icon {
+    border: none;
+    background: none;
+    color: #444;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 3px;
+    &:hover:not(:disabled) {
+        background: #444;
+        .icon {
+            color: #fff;
+        }
+    }
+    .icon {
+        vertical-align: middle;
+    }
+
+    &:disabled {
+        .icon {
+            color: #ddd;
+        }
+    }
+}
+
+.__react_component_tooltip {
+    padding: 3px 15px !important;
+}

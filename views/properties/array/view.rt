@@ -1,0 +1,8 @@
+<rt-require dependency="ucfirst" as="ucfirst" />
+<rt-require dependency="i" as="i" />
+<ul class="array {this.props.classes||''}">
+    <li key="{child.props.path}-wrap" class="array__item" rt-repeat="child in this.props.children">
+        <h4 rt-if="child.props.schema.heading" class="sticky" data-parent-path="{child.props.breadcrumbs.length ? child.props.breadcrumbs.join(' > ') + ' > ' : ''}">{ucfirst(child.props.schema.heading)}</h4>
+        {child}
+    </li>
+</ul>

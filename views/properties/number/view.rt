@@ -1,0 +1,1 @@
+<span class="value" onDoubleClick="{this.props.editHandler}">{this.props.value}</span>

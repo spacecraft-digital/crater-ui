@@ -1,0 +1,17 @@
+{% extends 'layout.twig' %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+    window.spacecraft = window.spacecraft||{};
+    window.spacecraft.customerSchema = {{ schema|json_encode }};
+    window.spacecraft.customers = {{ customers|json_encode }};
+    </script>
+    <script src="/js/index.js"></script>
+{% endblock %}
+
+{% block title %}Crater{% endblock %}
+
+{% block body %}
+    <div id="main"></div>
+ {% endblock %}

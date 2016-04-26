@@ -1,0 +1,4 @@
+<button disabled="{!this.props.enabled}" onClick="{this.props.clickHandler}" class="button--icon {this.props.className||''}" data-tip="{this.props.label}" data-for="tooltip" data-place="{this.props['tip-place']}" data-offset="{JSON.stringify(this.props['tip-offset'])}">
+    <span class="visually-hidden">{this.props.label}</span>
+    <svg rt-if="this.props.icon" class="icon icon-{this.props.icon}"><use xlinkHref="/svg/icons.svg#icon-{this.props.icon}"></use></svg>
+</button>

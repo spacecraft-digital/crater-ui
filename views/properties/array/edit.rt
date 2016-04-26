@@ -1,0 +1,22 @@
+<rt-require dependency="i" as="i" />
+<rt-require dependency="slug" as="slug" />
+<rt-require dependency="ucfirst" as="ucfirst" />
+<rt-require dependency="uncamelize" as="uncamelize_" />
+<rt-require dependency="../../../react/Button.coffee" as="Button"/>
+
+<ul
+    class="array {this.props.classes||''}"
+    rt-scope="i().singularize(this.props.label) as thing; uncamelize_({specialCases: 'DB', merge: 'specialCases'}) as uncamelize">
+    <li key="{child.props.path}-wrap" class="array__item array__item--{slug(child.props.schema.type.toLowerCase())}" rt-repeat="child in this.props.children">
+        <h4
+            rt-if="child.props.schema.heading"
+            class="sticky"
+            data-parent-path="{child.props.breadcrumbs.length ? child.props.breadcrumbs.join(' > ') + ' > ' : ''}">
+            {ucfirst(uncamelize(child.props.schema.heading))}
+        </h4>
+        {child}
+
+        <Button class="array__item__delete" icon="bin" id="delete" enabled="{true}" label="delete {child.props.schema.heading||(child.props.value.name||'') + ' ' + thing}" clickHandler="{this.removeChild.bind(this, childIndex)}" />
+    </li>
+    <li class="array__item array__item--add"><button onClick="{this.addChild}">Add {this.props.children.length ? 'another' : 'a'} {thing}</button></li>
+</ul>

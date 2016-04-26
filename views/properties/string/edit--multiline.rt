@@ -1,0 +1,9 @@
+<textarea
+    ref="{this.setInput}"
+    value="{this.props.value||''}"
+    name="{this.props.path}"
+    id="{this.props.path}"
+    onChange="{this.props.changeHandler}"
+    onBlur="{this.props.blurHandler}"
+    class="form__control"
+/>

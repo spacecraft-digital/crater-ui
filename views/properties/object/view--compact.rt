@@ -1,0 +1,7 @@
+<rt-require dependency="ucfirst" as="ucfirst" />
+<ul class="object object--compact">
+    <li key="{child.props.path}-wrap" class="object__property object__property--compact" rt-repeat="child in this.props.children">
+        <h4 rt-if="child.props.heading">{ucfirst(child.props.heading)}: </h4>
+        {child}
+    </li>
+</ul>

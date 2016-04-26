@@ -1,0 +1,7 @@
+<rt-require dependency="ucfirst" as="ucfirst" />
+<ul class="object">
+    <li key="{child.props.path}-wrap" class="object__property" rt-repeat="child in this.props.children">
+        <label class="control__label" rt-if="child.props.label" for="{child.props.path}">{ucfirst(child.props.label)}: </label>
+        {child}
+    </li>
+</ul>

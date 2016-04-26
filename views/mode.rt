@@ -1,0 +1,4 @@
+<fieldset id="mode">
+    <label key="view"><input type="radio" onChange="{this.changeHandler}" name="mode" value="view" checked="{this.props.mode == 'view'}"/> View</label>
+    <label key="edit"><input type="radio" onChange="{this.changeHandler}" name="mode" value="edit" checked="{this.props.mode == 'edit'}"/> Edit</label>
+</fieldset>

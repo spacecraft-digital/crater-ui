@@ -1,0 +1,1 @@
+<span class="value" onDoubleClick="{this.props.editHandler}" title="{this.getMoment().format('ddd Do MMMM YYYY')}">{this.getMoment().fromNow()}</span>

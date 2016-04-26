@@ -1,3 +1,5 @@
+$scalarTypes: string, number, date, boolean;
+
 .list--horizontal {
     h2 {
         font-size: 16px;
@@ -27,18 +29,145 @@
     }
 }
 
-.list--key-value {
-    &>ul {
-        list-style: none;
-        &>li {
-            &>h4 {
-                display: inline-block;
-                font-size: 1em;
-                & + div {
-                    font-weight: bold;
-                    display: inline-block;
-                }
-            }
+.object {
+    margin: 0;
+    border-left: 2px solid #eee;
+    padding-left: 0.5em;
+}
+
+.object__property {
+    list-style: none;
+    margin-bottom: 0.3em;
+    &>h4 {
+        display: inline-block;
+        font-size: 1em;
+        min-width: 4em;
+        margin: 3px 0;
+        & + div {
+            font-weight: bold;
+            display: inline-block;
         }
+    }
+    &>.value {
+        flex: auto;
+    }
+}
+.object__property--name {
+    display: none !important;
+}
+@each $type in $scalarTypes {
+    .object__property--#{$type} {
+        display: flex;
+        &>h4 {
+            flex: auto;
+            width: 33%;
+        }
+        &.value {
+            flex: auto;
+        }
+    }
+}
+.object__property--array {
+    &>h4 {
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+    }
+}
+
+.object--compact {
+    display: flex;
+    border-bottom: 1px solid #bbb;
+    border-left: none;
+    padding-left: 0;
+    &:last-child {
+        border-bottom: none;
+    }
+    h4 {
+        display: none;
+    }
+}
+.object__property--compact {
+    flex: auto;
+    width: 50%;
+    margin-bottom: 0;
+}
+
+.array {
+    margin: 0 0.66em;
+}
+
+.array__item {
+    list-style: none;
+    padding: 0.33em 0;
+    position: relative;
+    .projects--edit & {
+        margin-top: 0.33em;
+    }
+}
+.array__item--add {
+    margin-top: 1.33em;
+    box-shadow: none;
+    padding: 0;
+    background-color: transparent !important;
+    &:first-child {
+        margin-top: 0.66em;
+    }
+}
+.array__item__delete {
+    display:none;
+    margin-top: 0.66em;
+    position: absolute;
+    top: 0em;
+    background: transparent;
+    right: -0.33em;
+    border: none;
+    font-size: 0.9em;
+    color: #999;
+    cursor: pointer;
+    &:hover {
+        background: #ddd;
+        cursor: pointer;
+    }
+
+    @each $type in $scalarTypes {
+        .array__item--#{$type} > & {
+            top: 1.1em;
+            right: 0.6em;
+        }
+    }
+
+    .array__item:hover > & {
+        display: inline-block;
+    }
+}
+
+
+li > .form__control:first-child {
+    margin-top: 0.66em;
+}
+
+
+.value {
+    font-weight: bold;
+    display: block;
+    background: none;
+    border: 1px solid transparent;
+    margin-top: 11px;
+    padding: 1px 5px;
+    cursor: text;
+    width: 100%;
+    &:hover {
+        border-color: #eee;
+        background: #fff;
+    }
+}
+
+.boolean_choice {
+    margin-right: 1em;
+    &:last-child {
+        margin-right: 0;
+    }
+    &>input {
+        margin-right: 0.33em;
     }
 }

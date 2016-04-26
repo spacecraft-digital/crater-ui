@@ -1,0 +1,11 @@
+<rt-require dependency="moment" as="moment" />
+<input
+    ref="{this.setInput}"
+    type="date"
+    value="{this.getDateValue()}"
+    name="{this.props.path}"
+    id="{this.props.path}"
+    onChange="{this.props.changeHandler}"
+    class="form__control"
+    data-relative-date="{this.getRelativeDate()}"
+/>

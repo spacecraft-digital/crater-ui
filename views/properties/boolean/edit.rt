@@ -1,0 +1,10 @@
+<fieldset class="boolean_wrap">
+    <label class="boolean_choice">
+        <input ref="{this.setInput}" type="radio" checked="{this.props.value}" name="{this.props.path}" id="{this.props.path}" value="{true}" onChange="{this.props.changeHandler}" />
+        Yes
+    </label>
+    <label class="boolean_choice">
+        <input type="radio" checked="{this.props.value === false}" name="{this.props.path}" value="{false}" onChange="{this.props.changeHandler}" />
+        No
+    </label>
+</fieldset>

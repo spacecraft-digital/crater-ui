@@ -16,3 +16,5 @@ class ComposerDependency
                     res.json composerJson.getDependencies()
             else
                 res.status(500).send("Unable to retrieve #{encode url}")
+
+module.exports = ComposerDependency
