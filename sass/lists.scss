@@ -93,13 +93,20 @@ $scalarTypes: string, number, date, boolean;
 }
 
 .array {
-    margin: 0 0.66em;
+    margin: 0 0 0 0.66em;
 }
 
 .array__item {
     list-style: none;
-    padding: 0.33em 0;
+    padding: 0;
+    margin: 0.5em 0;
     position: relative;
+    &:first-child {
+        padding-top: 0;
+    }
+    &:last-child {
+        padding-bottom: 0;
+    }
     .projects--edit & {
         margin-top: 0.33em;
     }
@@ -115,7 +122,6 @@ $scalarTypes: string, number, date, boolean;
 }
 .array__item__delete {
     display:none;
-    margin-top: 0.66em;
     position: absolute;
     top: 0em;
     background: transparent;
@@ -131,7 +137,7 @@ $scalarTypes: string, number, date, boolean;
 
     @each $type in $scalarTypes {
         .array__item--#{$type} > & {
-            top: 1.1em;
+            top: 0.66em;
             right: 0.6em;
         }
     }
@@ -139,11 +145,6 @@ $scalarTypes: string, number, date, boolean;
     .array__item:hover > & {
         display: inline-block;
     }
-}
-
-
-li > .form__control:first-child {
-    margin-top: 0.66em;
 }
 
 
