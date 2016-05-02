@@ -130,7 +130,7 @@ class CraterUi
 
     # takes an array of Stages (i.e. objects with names like QA, UAT)
     # and returns them in the order that we deploy to
-    sortStages: (stages) ->
+    sortStages: (stages = []) ->
         stages.sort (a, b) ->
             # stages with these names will be order in this order.
             # Any other names will be put first
