@@ -20,6 +20,7 @@ module.exports = (config) ->
         console.log ''
 
     # Assert some required config
+    throw "JIRA_USERNAME needs to be set in the environment" unless config.jira_user?
     throw "JIRA_PASSWORD needs to be set in the environment" unless config.jira_password?
     throw "GITLAB_TOKEN needs to be set in the environment" unless config.gitlab_token?
     throw "GOOGLE_PRIVATE_KEY needs to be set in the environment" unless config.google_private_key?
