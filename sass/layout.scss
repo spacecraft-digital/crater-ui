@@ -67,6 +67,10 @@ body {
     padding-top: 2.2em;
     padding-bottom: 2em;
     max-width: $data-width;
+    &>.object {
+        border-left: none;
+        padding-left: 0;
+    }
 }
 #header__data {
     max-width: $data-width;

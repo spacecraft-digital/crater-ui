@@ -1,12 +1,11 @@
 <div id="customer" rt-if="this.props.data.name">
     {[
         React.createElement(
-            this.typeTemplates.array[this.props.mode],
-            {label: 'projects', classes: 'projects projects--' + this.props.mode, key: 'projects'},
-            this.createArrayChildren(
-                this.props.schema.projects,
-                this.props.data.projects,
-                'projects'
+            this.typeTemplates.object[this.props.mode],
+            {key: 'entity'},
+            this.createObjectChildren(
+                this.props.schema,
+                this.props.data
             )
         )
     ]}

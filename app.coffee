@@ -157,6 +157,8 @@ require('dev-tunnels') config
         Customer.find().select('name _id')
         .then (customers) ->
             order =
+                name: undefined
+                aliases: undefined
                 projects:
                     childSchema:
                         name: undefined
