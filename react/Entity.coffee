@@ -75,7 +75,11 @@ Entity = React.createClass
                 breadcrumbs = breadcrumbs.concat [ucfirst schema.heading] if schema.heading
                 children = @createObjectChildren schema.children, value, path, breadcrumbs
                 return React.createElement @typeTemplates.object[view], props, children
-            when 'String', 'Date', 'Boolean', 'Number'
+            when 'Boolean'
+                props.value = true if props.value is 'true'
+                props.value = false if props.value is 'false'
+                return React.createElement @typeTemplates[schema.type.toLowerCase()][view], props
+            when 'String', 'Date', 'Number'
                 return React.createElement @typeTemplates[schema.type.toLowerCase()][view], props
             when 'ObjectID'
                 return null

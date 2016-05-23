@@ -1,1 +1,1 @@
-<input ref="{this.setInput}" type="number" value="{this.props.value}" name="{this.props.path}" id="{this.props.path}" onChange="{this.props.changeHandler}" class="form__control" />
+<input ref="{this.setInput}" type="number" value="{this.props.value||0}" name="{this.props.path}" id="{this.props.path}" onChange="{this.props.changeHandler}" class="form__control" />

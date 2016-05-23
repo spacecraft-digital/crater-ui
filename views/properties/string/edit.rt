@@ -1,7 +1,7 @@
 <input
     ref="{this.setInput}"
     type="text"
-    value="{this.props.value}"
+    value="{this.props.value||''}"
     name="{this.props.path}"
     id="{this.props.path}"
     onChange="{this.props.changeHandler}"
