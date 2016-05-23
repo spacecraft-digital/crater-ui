@@ -188,6 +188,7 @@ require('dev-tunnels') config
             res.render 'main.twig',
                 schema: order
                 entities: (name: c.name, id: c.id for c in entities)
+                collections: ['customers', 'people']
 
     # Return schema for Customer
     router.get '/schema/v1/:entity', (req, res) ->

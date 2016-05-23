@@ -4,6 +4,7 @@
     {{ parent() }}
     <script>
     window.spacecraft = window.spacecraft||{};
+    window.spacecraft.collections = {{ collections|json_encode }}
     window.spacecraft.schema = {{ schema|json_encode }};
     window.spacecraft.entities = {{ entities|json_encode }};
     </script>
