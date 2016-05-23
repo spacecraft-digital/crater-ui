@@ -3,15 +3,47 @@
 <rt-require dependency="../react/Message.coffee" as="Message"/>
 <rt-require dependency="../react/Button.coffee" as="Button"/>
 <rt-require dependency="react-tooltip" as="ReactTooltip"/>
+<rt-require dependency="ucfirst" as="ucfirst"/>
 <main>
+    <div id="search_mask" class="{!this.state.displayEntity ? 'visible' : this.state.searching ? 'visible visible--floating' : ''}">
+        <div class="header header--static header--index">
+            <h1>Crater</h1>
+
+            <ul class="nav">
+                <li key="nav-{collection}" class="nav__item{this.props.collection == collection ? ' nav__item--active' : ''}" rt-repeat="collection in this.props.collections">
+                    <a href="/{collection}" class="nav__link">{ucfirst(collection)}</a>
+                </li>
+            </ul>
+
+            <button onClick="{this.props.newClickHandler}">New {this.props.entityType}</button>
+            <a class="rest_link" href="{this.props.apiUrl}">API</a>
+        </div>
+        <input type="text" placeholder="Type a {this.props.entityType}'s name…" id="search" tabindex="0">
+        <ol class="search_results" rt-if="this.state.searchResults.length">
+            <li
+                key="results-{result.id}"
+                class="search_result {this.state.selectedSearchResult === resultIndex ? 'search_result--selected' : ''}"
+                rt-repeat="result in this.state.searchResults"
+                onClick="{this.props.searchResultClickHandler}"
+                data-search-result-id="{result.id}">
+                {result.name}
+            </li>
+        </ol>
+        <div class="search_results_empty" rt-if="this.state.searching && !this.state.searchResults.length">
+            No matching {this.props.collection}
+        </div>
+    </div>
     <Message id="message" message="{this.state.message}"></Message>
-    <div id="header">
+
+    <div class="header{this.state.displayEntity ? '' : ' header--hidden'}">
         <div id="header__data">
-            <span id="customer_name">
-                <select id="customer_select" onChange="{this.props.customerSelectHandler}" value="{this.state.data._id}">
-                    <option key="customer-select-{customer.id}" rt-repeat="customer in this.props.customers" value="{customer.id}">{customer.name}</option>
+            <span id="entity_name">
+                <select id="entity_select" onChange="{this.props.entitySelectHandler}" value="{this.state.data._id}">
+                    <option key="entity-select-{entity.id}" rt-repeat="entity in this.props.entities" value="{entity.id}">{entity.name}</option>
+                    <option disabled="disabled">-----</option>
+                    <option value="{''}">Create new {this.props.entityType}</option>
                 </select>
-                <h1 rt-if="this.state.data.name" class="customer_name">{this.state.data.name}</h1>
+                <h1 rt-if="this.state.data.name" class="entity_name">{this.state.data.name}</h1>
             </span>
             <Button rt-if="this.state.mode == 'edit'" icon="undo" id="undo" label="undo" enabled="{this.state.undoable}" clickHandler="{this.props.undoClickHandler}" />
             <Button rt-if="this.state.mode == 'edit'" icon="redo" id="redo" label="redo" enabled="{this.state.redoable}" clickHandler="{this.props.redoClickHandler}" />
@@ -22,7 +54,8 @@
             </label>
         </div>
     </div>
-    <Entity id="customer" data="{this.state.data}" mode="{this.state.mode}" schema="{this.props.schema}" changeHandler="{this.props.changeHandler}" pathEditHandler="{this.props.pathEditHandler}" setData="{this.props.setData}"></Entity>
+    <Entity id="entity" rt-if="this.state.displayEntity" data="{this.state.data}" mode="{this.state.mode}" schema="{this.props.schema}" changeHandler="{this.props.changeHandler}" pathEditHandler="{this.props.pathEditHandler}" setData="{this.props.setData}"></Entity>
+    <Button class="entity_delete" rt-if="this.state.displayEntity && this.state.data._id" icon="bin" enabled="{true}" label="delete {this.state.data.name}" clickHandler="{this.props.deleteClickHandler}" />
 
     <ReactTooltip ref="tooltip" place="left" type="dark" effect="solid" id="tooltip" offset="{{bottom: 0}}" />
 </main>

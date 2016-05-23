@@ -7,4 +7,5 @@ document.addEventListener 'DOMContentLoaded', (ev) ->
         entities: window.spacecraft.entities
         schema: window.spacecraft.schema
         mainElement: '#main'
+        searchElement: '#search'
     }

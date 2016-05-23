@@ -183,7 +183,7 @@ require('dev-tunnels') config
                                 servers: undefined
                                 modules: undefined
                         repos: undefined
-            schema = extractSimpleSchema Customer
+            schema = extractSimpleSchema Entity
             _.defaultsDeep order, schema
             res.render 'main.twig',
                 schema: order

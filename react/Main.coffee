@@ -12,6 +12,9 @@ Main = React.createClass
         data: {}
         undoable: false
         redoable: false
+        displayEntity: false
+        searchResults: []
+        selectedSearchResult: 0
 
     componentDidUpdate: ->
         @initStickyHeadings()
