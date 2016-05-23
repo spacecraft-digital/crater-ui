@@ -166,10 +166,10 @@ require('dev-tunnels') config
         .then (entities) ->
             order =
                 name: undefined
-                aliases: undefined
                 projects:
                     childSchema:
                         name: undefined
+                        defaultProject: undefined
                         notes: undefined
                         projectManager: undefined
                         state: undefined
@@ -183,6 +183,7 @@ require('dev-tunnels') config
                                 servers: undefined
                                 modules: undefined
                         repos: undefined
+                aliases: undefined
             schema = extractSimpleSchema Entity
             _.defaultsDeep order, schema
             res.render 'main.twig',
