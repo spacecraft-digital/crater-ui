@@ -73,7 +73,7 @@ Entity = React.createClass
                 return React.createElement @typeTemplates.array[view], props, children
             when 'Object'
                 breadcrumbs = breadcrumbs.concat [ucfirst schema.heading] if schema.heading
-                children = _.compact @createObjectChildren schema.children, value, path, breadcrumbs
+                children = @createObjectChildren schema.children, value, path, breadcrumbs
                 return React.createElement @typeTemplates.object[view], props, children
             when 'String', 'Date', 'Boolean', 'Number'
                 return React.createElement @typeTemplates[schema.type.toLowerCase()][view], props
@@ -89,7 +89,7 @@ Entity = React.createClass
     #   both of these properties are strings
     # returns 'name' or 'role'
     # else returns false
-    objectIsCompactable: (schema) ->
+    objectIsCompactible: (schema) ->
         return false unless schema
         count = 0
         for key, o of schema when key not in ['_id', '__v']
@@ -98,9 +98,10 @@ Entity = React.createClass
         return count is 2
 
     createObjectChildren: (schema, value = {}, path = '', breadcrumbs = []) ->
-        for own key, branch of schema when key not in ['_id', '__v']
+        children = for own key, branch of schema when key not in ['_id', '__v']
             continue if @props.mode is 'view' and (!value[key] or value[key]?.length is 0)
             @createComponentForProperty key, branch, value[key], path, breadcrumbs
+        _.compact children
 
     # schema is an object
     # value is an array
