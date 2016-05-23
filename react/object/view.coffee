@@ -6,7 +6,7 @@ i = require('i')()
 module.exports = React.createClass
 
     render: ->
-        if this.props.isCompactable
+        if this.props.schema?.isCompactible
             return require('../../views/properties/object/view--compact.rt').apply this, arguments
         else
             return require('../../views/properties/object/view.rt').apply this, arguments
@@ -17,7 +17,7 @@ module.exports = React.createClass
         if child.props.schema.childType
             arrayOfType = slug child.props.schema.childType.toLowerCase()
             className += " object__property--array-of-#{arrayOfType}"
-        if child.props.name is this.props.schema.nameProperty
+        if child.props.name is this.props.schema?.nameProperty
             className += " object__property--name"
         className
 

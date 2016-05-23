@@ -67,10 +67,22 @@ $scalarTypes: string, number, date, boolean;
         }
     }
 }
-.object__property--array {
+.object__property--array-of-object {
     &>h4 {
         font-size: 1.2em;
-        margin-bottom: 0.5em;
+    }
+}
+.object__property--array-of-string[data-child-count="1"] {
+    display: flex;
+    &>h4 {
+        flex: auto;
+        width: 33%;
+    }
+    &>.array {
+        flex: auto;
+        display: block;
+        width: 100%;
+        margin-left: 0;
     }
 }
 
@@ -109,6 +121,16 @@ $scalarTypes: string, number, date, boolean;
     }
     .projects--edit & {
         margin-top: 0.33em;
+    }
+
+    & > h4:not(.sticky--stuck) {
+        margin: 1em 0 0.5em;
+    }
+}
+.array__item--compactible {
+    margin-top: 0;
+    & > h4 {
+        display: none;
     }
 }
 .array__item--add {

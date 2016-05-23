@@ -108,7 +108,7 @@ Entity = React.createClass
     # path is a string
     createArrayChildren: (schema, value = [], path = '', breadcrumbs = []) ->
         schemaDef = Crater.getSchema schema.childMeta?.name
-        compactible = schemaDef && schemaDef.nameProperty && @objectIsCompactable schema.childSchema
+        compactible = schemaDef && schemaDef.statics?.getNameProperty() && @objectIsCompactible schema.childSchema
         for item, index in value
             childSchema =
                 type: schema.childType
