@@ -1,8 +1,8 @@
 <rt-require dependency="ucfirst" as="ucfirst" />
 <rt-require dependency="slug" as="slug" />
 <ul class="object">
-        <h4 class="control__label" rt-if="child.props.label" for="{child.props.path}">{this.getChildLabel(child)}: </h4>
     <li key="{child.props.path}-wrap" class="object__property {this.getChildTypeClassName(child)}" data-child-count="{child.props.schema.childType ? child.props.value.length : ''}" rt-repeat="child in this.props.children">
+        <h4 class="control__label" rt-if="child.props.label" for="{child.props.path}">{this.getChildLabel(child)}</h4>
         {child}
     </li>
 </ul>
