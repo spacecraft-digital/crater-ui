@@ -1,8 +1,8 @@
-CraterUi = require '../src/CraterUi.coffee'
+CraterUi = require './CraterUi.coffee'
 
 document.addEventListener 'DOMContentLoaded', (ev) ->
     new CraterUi {
-        customers: window.spacecraft.customers
-        schema: window.spacecraft.customerSchema
+        entities: window.spacecraft.entities
+        schema: window.spacecraft.schema
         mainElement: '#main'
     }

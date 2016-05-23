@@ -4,8 +4,8 @@
     {{ parent() }}
     <script>
     window.spacecraft = window.spacecraft||{};
-    window.spacecraft.customerSchema = {{ schema|json_encode }};
-    window.spacecraft.customers = {{ customers|json_encode }};
+    window.spacecraft.schema = {{ schema|json_encode }};
+    window.spacecraft.entities = {{ entities|json_encode }};
     </script>
     <script src="/js/index.js"></script>
 {% endblock %}

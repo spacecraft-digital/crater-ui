@@ -148,14 +148,22 @@ extractSimpleSchema = (model) ->
             _.extend types[key], properties.options.crater
     types
 
+getModel = (db, res, name) ->
+    try
+        db.model ucfirst inflect.singularize name
+    catch e
+        res.status(404).send('Unknown Entity type')
+
 require('dev-tunnels') config
 .then -> require('crater') config.mongo_url
 .then (db) ->
-    Customer = db.model 'Customer'
 
-    router.get '/:customer?', (req, res) ->
-        Customer.find().select('name _id')
-        .then (customers) ->
+    router.get '/:entity/:name?', (req, res) ->
+        Entity = getModel db, res, req.params.entity
+        return unless Entity
+
+        Entity.find().select('name _id')
+        .then (entities) ->
             order =
                 name: undefined
                 aliases: undefined
@@ -179,11 +187,14 @@ require('dev-tunnels') config
             _.defaultsDeep order, schema
             res.render 'main.twig',
                 schema: order
-                customers: (name: c.name, id: c.id for c in customers)
+                entities: (name: c.name, id: c.id for c in entities)
 
     # Return schema for Customer
-    router.get '/schema/v1/customer', (req, res) ->
-        res.json extractSimpleSchema Customer.schema.paths
+    router.get '/schema/v1/:entity', (req, res) ->
+        Entity = getModel db, res, req.params.entity
+        return unless Entity
+
+        res.json extractSimpleSchema Entity.schema.paths
 
     # latest/specific release ticket
     # router.get new RegExp("^#{apiRootUrl}/releases/([^/]+)(?:/([^/]+))?/(last|latest|next|[\\d\\.]+)(?:/(.*?))?/?$", 'i'), (req, res) ->
@@ -226,6 +237,7 @@ require('dev-tunnels') config
 
     # list dependencies for project tag
     router.get "#{apiRootUrl}/customer/:name/:project?/:repo?/dependencies/:tag?", (req, res) ->
+        Customer = db.model 'Customer'
         Customer.findOneByName req.params.name
         .catch (err) ->
             res.status(404).send('Customer not found')
@@ -257,13 +269,30 @@ require('dev-tunnels') config
                     res.status(500).send("Unable to retrieve #{encode url}")
 
 
-    # specific customer easy query
-    router.get ["#{apiRootUrl}/customer/:name", "#{apiRootUrl}/customer/:name/*"], (req, res) ->
-        Customer.findOneByName req.params.name
-        .catch (err) ->
-            res.status(404).send('Customer not found')
-        .then (customer) ->
+    for entityName, slug of {Customer: 'customers', Person: 'people'}
+        Entity = db.model entityName
+        restify.serve router, Entity,
+            name: slug
+            private: [
+                '__v'
+                'projects._id'
+                'projects.stages._id'
+                'projects.stages.modules._id'
+                'projects.stages.servers._id'
+            ]
+            onError: (err, req, res, next) ->
+                console.log if err.stack then err.stack else err
+                next "Something went wrong"
 
+    app.use router
+
+    # specific customer easy query
+    router.get ["#{apiRootUrl}/:entity/:name", "#{apiRootUrl}/:entity/:name/*"], (req, res) ->
+        Entity = getModel db, res, req.params.entity
+        return unless Entity
+
+        Entity.findOneByName req.params.name.replace /-/g, ' '
+        .then (customer) ->
             return unless assertCanonicalPath req.path, req.params.name, customer, res
 
             target = customer
@@ -271,22 +300,9 @@ require('dev-tunnels') config
             return res.status(404).send("#{encode req.params[0]} not found") unless target
 
             sendJsonOrScalar target, res
-
-    # default REST API
-    restify.serve router, Customer,
-        name: 'customers'
-        private: [
-            '__v'
-            'projects._id'
-            'projects.stages._id'
-            'projects.stages.modules._id'
-            'projects.stages.servers._id'
-        ]
-        onError: (err, req, res, next) ->
-            console.log if err.stack then err.stack else err
-            next "Something went wrong"
-
-    app.use router
+        .catch (err) ->
+            console.log err
+            res.status(404).send('Customer not found')
 
     app.listen 3001, ->
       console.log('REST API on port 3001')

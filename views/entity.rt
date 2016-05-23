@@ -1,4 +1,4 @@
-<div id="customer" rt-if="this.props.data.name">
+<div id="entity">
     {[
         React.createElement(
             this.typeTemplates.object[this.props.mode],
