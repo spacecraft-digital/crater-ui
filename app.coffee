@@ -8,6 +8,7 @@ _ = require 'lodash'
 encode = require 'ent/encode'
 
 slug = require 'slug'
+inflect = require('i')()
 
 https = require 'https'
 express = require 'express'
