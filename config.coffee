@@ -17,6 +17,7 @@ config =
 
     mongo_url: 'mongodb://localhost/crater'
 
+    releases_url: 'http://localhost:3002'
 
     google_client_id: process.env.GOOGLE_CLIENT_ID
     google_client_email: process.env.GOOGLE_CLIENT_EMAIL
