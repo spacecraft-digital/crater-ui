@@ -187,7 +187,7 @@ class CraterUi
     getEntityUrl: (data) =>
         url = "/#{@options.collection}"
         if data
-            nameSlug = slug (data.name||'new').toLowerCase()
+            nameSlug = slug (data.codename||data.name||'new').toLowerCase()
             url += "/#{nameSlug}"
         url
 
