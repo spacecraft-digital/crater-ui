@@ -54,9 +54,10 @@ class CraterUi
 
         @renderMainComponent()
 
-        @setMode @retrieve('mode') if @retrieve('mode')
-        if activeEntityId = @getActiveEntityId()
-            @load activeEntityId
+        entityToLoad = entity for entity in @options.entities when @getEntityUrl(entity) is window.location.pathname
+        if entityToLoad
+            @load entityToLoad.id
+            @setMode @retrieve('mode') if @retrieve('mode')
         else
             @close true
 
