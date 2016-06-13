@@ -15,7 +15,8 @@ config =
 
     toran_proxy_package_url: 'https://toran-proxy.hq.jadu.net/repo/private/p/#{package_name}.json'
 
-    mongo_url: 'mongodb://localhost/customers'
+    mongo_url: 'mongodb://localhost/crater'
+
 
     google_client_id: process.env.GOOGLE_CLIENT_ID
     google_client_email: process.env.GOOGLE_CLIENT_EMAIL
