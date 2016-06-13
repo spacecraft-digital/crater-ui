@@ -2,6 +2,11 @@
 # Config — defaults can be overridden with environment vars
 
 config =
+    collections: ['customers', 'people']
+    port: 443
+    # if true, a server will listen on port 80 and redirect to HTTPS
+    redirect80: true
+
     jira_user: process.env.JIRA_USER
     jira_password: process.env.JIRA_PASSWORD
 
