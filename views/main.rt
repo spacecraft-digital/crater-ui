@@ -37,6 +37,7 @@
 
     <div class="header{this.state.displayEntity ? '' : ' header--hidden'}">
         <div id="header__data">
+            <a href="/{this.props.collection}" title="Back to {this.props.collection} list" class="back" onClick="{this.props.backClickHandler}">◀</a>
             <span id="entity_name">
                 <select id="entity_select" onChange="{this.props.entitySelectHandler}" value="{this.state.data._id}">
                     <option key="entity-select-{entity.id}" rt-repeat="entity in this.props.entities" value="{entity.id}">{entity.name}</option>

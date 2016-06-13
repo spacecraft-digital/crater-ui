@@ -85,6 +85,7 @@ class CraterUi
             deleteClickHandler: @deleteClickHandler
             searchResultClickHandler: @searchResultClickHandler
             newClickHandler: @newClickHandler
+            backClickHandler: @backClickHandler
             setData: @setStateData
             undoClickHandler: @undo
             redoClickHandler: @redo
@@ -452,6 +453,10 @@ class CraterUi
         @snapshot()
         @saveDebounced()
         ReactTooltip.hide()
+
+    backClickHandler: (ev) =>
+        ev.preventDefault()
+        @close()
 
     newClickHandler: (ev) =>
         @cancelSearch()
