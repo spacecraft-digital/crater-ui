@@ -1,6 +1,6 @@
 config = require './config'
 # jira = new (require './src/Jira') config
-ApiUrlGenerator = require './src/apiUrlGenerator'
+ApiUrlGenerator = require './src/ApiUrlGenerator'
 uncamelize = require 'uncamelize'
 ucfirst = require 'ucfirst'
 _ = require 'lodash'
