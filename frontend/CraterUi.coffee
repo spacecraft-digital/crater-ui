@@ -120,7 +120,10 @@ class CraterUi
         key '⌘+s, ctrl+s', 'all', (ev) => ev.preventDefault(); @save()
 
     historyStateChange: (ev) =>
-        @load ev.state?.id
+        if ev.state?.id
+            @load ev.state.id
+        else
+            @close()
 
     documentKeydown: (ev) =>
         if ev.target is document.body and ev.code.match(/^(Key|Digit|Enter)/) and not (ev.altKey or ev.ctrlKey or ev.metaKey or ev.shiftKey)
