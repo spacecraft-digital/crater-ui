@@ -40,6 +40,7 @@
 }
 .search_result {
     padding: 0.33em;
+    cursor: pointer;
     &.search_result--selected, &:hover {
         background: #444;
         color: #fff;

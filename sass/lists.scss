@@ -37,7 +37,6 @@ $scalarTypes: string, number, date, boolean;
 
 .object__property {
     list-style: none;
-    margin-bottom: 0.3em;
     &>h4 {
         display: inline-block;
         font-size: 1em;
@@ -58,6 +57,7 @@ $scalarTypes: string, number, date, boolean;
 @each $type in $scalarTypes {
     .object__property--#{$type} {
         display: flex;
+        align-items: baseline;
         &>h4 {
             flex: auto;
             width: 33%;
@@ -102,6 +102,9 @@ $scalarTypes: string, number, date, boolean;
     flex: auto;
     width: 50%;
     margin-bottom: 0;
+    &:first-child {
+        width: 0;
+    }
 }
 
 .array {
@@ -175,7 +178,6 @@ $scalarTypes: string, number, date, boolean;
     display: block;
     background: none;
     border: 1px solid transparent;
-    margin-top: 11px;
     padding: 1px 5px;
     cursor: text;
     width: 100%;
