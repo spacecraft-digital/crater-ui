@@ -23,6 +23,16 @@ requestProxy = require 'express-request-proxy'
 credentials =
     key: fs.readFileSync('/etc/pki/tls/private/crater.key', 'utf8')
     cert: fs.readFileSync('/etc/pki/tls/certs/2_crater.hq.jadu.net.crt', 'utf8')
+chain = fs.readFileSync('/etc/pki/tls/certs/startssl-ca-bundle.crt', 'utf8)
+
+credentials.ca = []
+chain = chain.split "\n"
+cert = []
+for line in chain when line.length isnt 0
+  cert.push line
+  if line.match /-END CERTIFICATE-/
+    credentials.ca.push cert.join "\n"
+    cert = []
 
 app = express()
 router = express.Router()
