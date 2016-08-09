@@ -14,6 +14,7 @@ inflect = require('i')()
 fs = require 'fs'
 https = require 'https'
 express = require 'express'
+cors = require 'cors'
 bodyParser = require 'body-parser'
 methodOverride = require 'method-override'
 restify = require 'express-restify-mongoose'
@@ -39,6 +40,7 @@ router = express.Router()
 
 app.use bodyParser.json()
 app.use methodOverride()
+app.use cors()
 
 # API URL generation
 apiRootUrl = '/api/v1'
