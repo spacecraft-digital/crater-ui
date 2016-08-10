@@ -1,3 +1,7 @@
+# app.coffee
+# Please refactor this bear
+
+
 config = require './config'
 # jira = new (require './src/Jira') config
 ApiUrlGenerator = require './src/ApiUrlGenerator'
@@ -218,13 +222,6 @@ require('dev-tunnels') config
                 schema: order
                 entities: (name: c.name, id: c.id for c in entities)
                 collections: ['customers', 'people']
-
-    # Return schema for Customer
-    router.get '/schema/v1/:entity', (req, res) ->
-        Entity = getModel db, res, req.params.entity
-        return unless Entity and Entity.find
-
-        res.json extractSimpleSchema Entity.schema.paths
 
     # list dependencies for project tag
     router.get "#{apiRootUrl}/customer/:name/:project?/:repo?/dependencies/:tag?", (req, res) ->
