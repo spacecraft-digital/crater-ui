@@ -1,3 +1,5 @@
+_ = require 'lodash'
+
 React = require 'react'
 
 module.exports = React.createClass

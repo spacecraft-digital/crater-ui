@@ -2,3 +2,5 @@ public/libs
 public/css/main.css
 public/js/
 node_modules/
+.env
+

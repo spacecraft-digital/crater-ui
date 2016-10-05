@@ -1,9 +1,14 @@
 
 # Config — defaults can be overridden with environment vars
+env = require 'node-env-file'
+
+# Load in environment variables from the .env file within the repo.
+# This file is NOT commited to the repository, so will need to be manually created.
+env('./.env');
 
 config =
     collections: ['customers', 'people']
-    port: 443
+    port: process.env.APP_PORT
     # if true, a server will listen on port 80 and redirect to HTTPS
     redirect80: true
 
@@ -24,7 +29,11 @@ config =
     google_private_key: process.env.GOOGLE_PRIVATE_KEY
 
     sshUser: 'root'
-    sshPrivateKeyPath: '/root/.ssh/jadu_webdev_key'
+    sshPrivateKeyPath: process.env.DEV_SSH_KEY
+
+    crater_key: process.env.CRATER_KEY
+    crater_cert: process.env.CRATER_CERT
+    chain: process.env.CHAIN
 
     timezone: 'Europe/London'
 
