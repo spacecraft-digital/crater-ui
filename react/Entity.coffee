@@ -1,5 +1,6 @@
 uncamelize = require('uncamelize') specialCases: 'DB', merge: 'specialCases'
 ucfirst = require 'ucfirst'
+_ = require 'lodash';
 
 React = require 'react'
 Crater = require 'crater/lib/Crater'

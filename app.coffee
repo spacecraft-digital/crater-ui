@@ -26,9 +26,9 @@ deepfilter = require 'deep-filter'
 Twig = require 'twig'
 requestProxy = require 'express-request-proxy'
 credentials =
-    key: fs.readFileSync('/etc/pki/tls/private/crater.key', 'utf8')
-    cert: fs.readFileSync('/etc/pki/tls/certs/2_crater.hq.jadu.net.crt', 'utf8')
-chain = fs.readFileSync('/etc/pki/tls/certs/startssl-ca-bundle.crt', 'utf8')
+    key: fs.readFileSync(config.crater_key, 'utf8')
+    cert: fs.readFileSync(config.crater_cert, 'utf8')
+chain = fs.readFileSync(config.chain, 'utf8')
 
 credentials.ca = []
 chain = chain.split "\n"
