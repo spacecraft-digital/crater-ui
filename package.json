@@ -29,6 +29,7 @@
     "express-restify-mongoose": "^3.2.0",
     "i": "^0.3.4",
     "joinn": "^1.0.3",
+    "jquery": "^3.1.1",
     "keymaster": "^1.6.2",
     "lcfirst": "^1.0.0",
     "lodash": "^4.6.1",
