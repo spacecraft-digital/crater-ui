@@ -1,0 +1,12 @@
+{
+    "uid": "crater",
+    "watch": true,
+    "append": true,
+    "command": "/usr/bin/coffee",
+    "script": "app.coffee",
+    "sourceDir": "/var/services/crater/latest/",
+    "minUptime": 1000,
+    "spinSleepTime": 2000,
+    "killSignal": "SIGTERM"
+}
+
